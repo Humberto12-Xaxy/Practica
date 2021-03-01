@@ -1,16 +1,16 @@
-#CREACION DE PV´s
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-postgresdb-vol1
-spec: #Configuración de lo que va a contruir a nivel de disco
+spec: 
   storageClassName: beto
   capacity:
-    storage: 10Gi # Capacidad
+    storage: 10Gi 
   accessModes:
-    - ReadWriteOnce # Lectura y escritura
+    - ReadWriteOnce 
   hostPath:
-    path: "/mnt/postdb-vol1" # Lugar donde guardara los datos
+    path: "/mnt/postdb-vol1" 
 
 ---
 
@@ -18,14 +18,14 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-redisdb-vol1
-spec: #Configuración de lo que va a contruir a nivel de disco
+spec: 
   storageClassName: beto
   capacity:
-    storage: 10Gi # Capacidad
+    storage: 10Gi 
   accessModes:
-    - ReadWriteOnce # Lectura y escritura
+    - ReadWriteOnce 
   hostPath:
-    path: "/mnt/redisdb-vol1" # Lugar donde guardara los datos
+    path: "/mnt/redisdb-vol1" 
 
 ---
 
@@ -33,14 +33,14 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-mongodb-vol1
-spec: #Configuración de lo que va a contruir a nivel de disco
+spec: 
   storageClassName: beto
   capacity:
-    storage: 10Gi # Capacidad
+    storage: 10Gi 
   accessModes:
-    - ReadWriteOnce # Lectura y escritura
+    - ReadWriteOnce 
   hostPath:
-    path: "/mnt/mongodb-vol1" # Lugar donde guardara los datos
+    path: "/mnt/mongodb-vol1" 
 
 ---
 
@@ -48,14 +48,14 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: pv-mysqldb-vol1
-spec: #Configuración de lo que va a contruir a nivel de disco
+spec: 
   storageClassName: beto
   capacity:
-    storage: 10Gi # Capacidad
+    storage: 10Gi 
   accessModes:
-    - ReadWriteOnce # Lectura y escritura
+    - ReadWriteOnce 
   hostPath:
-    path: "/mnt/mysqldb-vol1" # Lugar donde guardara los datos
+    path: "/mnt/mysqldb-vol1" 
 
 ---
 #CREACION DE PVC´s
@@ -68,7 +68,7 @@ spec:
   volumeName: pv-postgresdb-vol1
   accessModes:
     - ReadWriteOnce
-  resources: #Configuración de lo que va a reclamar
+  resources: 
     requests:
       storage: 5Gi
 
@@ -83,7 +83,7 @@ spec:
   volumeName: pv-redisdb-vol1
   accessModes:
     - ReadWriteOnce
-  resources: #Configuración de lo que va a reclamar
+  resources:
     requests:
       storage: 5Gi
 
@@ -98,7 +98,7 @@ spec:
   volumeName: pv-mongodb-vol1
   accessModes:
     - ReadWriteOnce
-  resources: #Configuración de lo que va a reclamar
+  resources: 
     requests:
       storage: 5Gi
 
@@ -113,7 +113,7 @@ spec:
   volumeName: pv-mysqldb-vol1
   accessModes:
     - ReadWriteOnce
-  resources: #Configuración de lo que va a reclamar
+  resources: 
     requests:
       storage: 5Gi
 
@@ -125,7 +125,7 @@ kind: StorageClass
 metadata:
   name: beto
 provisioner: kubernetes.io/no-provisioner # no-provisioner -> Entorno de de infraestructura local
-reclaimPolicy: Retain # Que realizara con mis datos 
+reclaimPolicy: Retain  
 volumeBindingMode: WaitForFirstConsumer
 
 ---
@@ -224,7 +224,7 @@ spec:
       - image: mysql:5.6
         name: mysql
         env:
-          # Use secret in real usage
+         
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
               configMapKeyRef:
